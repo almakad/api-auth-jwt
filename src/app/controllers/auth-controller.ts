@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm'
 import User from '../models/User'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+const env = require('../../../env')
 
 class AuthController {
   async auth(req: Request, res: Response) {
@@ -19,7 +20,7 @@ class AuthController {
     if (!isValidPassword) {
       return res.sendStatus(401)
     }
-    const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1d'})
+    const token = jwt.sign({ id: user.id }, env.jwtSecret, { expiresIn: '1d'})
     
     const toUser = {
       user: {
