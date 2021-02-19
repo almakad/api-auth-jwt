@@ -1,11 +1,9 @@
 const env = require('./env')
 
-console.log(env)
-
 module.exports = {
   "type": env.databaseType,
   "host": env.postgresUrl,
-  "port": env.port,
+  "port": env.dbPort,
   "username": env.username,
   "password": env.password,
   "database": env.database,
